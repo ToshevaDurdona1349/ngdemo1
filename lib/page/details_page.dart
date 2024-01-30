@@ -1,13 +1,28 @@
 import 'package:flutter/material.dart';
 
 class DetailsPage extends StatefulWidget {
-  const DetailsPage({super.key});
+  static const String id="details_page";
+  final String? userId;
+  const DetailsPage({super.key, this.userId});
 
   @override
   State<DetailsPage> createState() => _DetailsPageState();
+
 }
 
 class _DetailsPageState extends State<DetailsPage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print("DetailsPage=>${widget.userId}");
+  }
+
+  _backToFinish(){
+    Map map ={"data":"Works fine"};
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +30,10 @@ class _DetailsPageState extends State<DetailsPage> {
         child: MaterialButton(
           color: Colors.green,
           textColor: Colors.white,
-          onPressed: () {},
+          child: Text("Welcome ${widget.userId}"),
+          onPressed: () {
+            _backToFinish();
+          },
         ),
       ),
     );
